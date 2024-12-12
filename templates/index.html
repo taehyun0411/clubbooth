@@ -1,4 +1,3 @@
-{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +6,17 @@
 <title>Title</title>
 </head>
 <body>
-Hello World!
-
-</body>
-</html>
+    <style>
+        h1 {
+            background-color: aquamarine;
+        }
+    </style>
+    <h1>
+        Hello World!
+    </h1>
+    <button onclick=hello()>hello</button>
+    <script>
+        function hello() {
+            alert("hello");
+        }
+    </script>
