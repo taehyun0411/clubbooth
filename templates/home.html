@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세미콜론 동아리 - 주식 홈페이지</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Navigate to Login Page
+        function navigateToLogin() {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body class="bg-white text-gray-800">
+    <!-- Navbar -->
+    <header class="bg-gray-100 border-b border-gray-300">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold" style="color: var(--signature-color);">세미콜론 주식</h1>
+            <div class="space-x-4">
+                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToLogin()">로그인</button>
+                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">회원가입</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8" style="background-color: var(--bg-color); color: var(--text-color);">
+        <section class="text-center">
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--signature-color);">semicolon</h2>
+            <p class="text-lg" style="color: var(--text-color);">어쩌고 ~~~~~~</p>
+        </section>
+
+        <section class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="p-4 border rounded shadow hover:shadow-lg transition" style="border-color: var(--border-color); background-color: var(--bg-color);">
+                <h3 class="text-xl font-bold mb-2" style="color: var(--signature-color);">#1</h3>
+                <p style="color: var(--text-color);">어쩌고 ~~~~~~~</p>
+            </div>
+            <div class="p-4 border rounded shadow hover:shadow-lg transition" style="border-color: var(--border-color); background-color: var(--bg-color);">
+                <h3 class="text-xl font-bold mb-2" style="color: var(--signature-color);">#2</h3>
+                <p style="color: var(--text-color);">어쩌고 ~!~~~~~.</p>
+            </div>
+            <div class="p-4 border rounded shadow hover:shadow-lg transition" style="border-color: var(--border-color); background-color: var(--bg-color);">
+                <h3 class="text-xl font-bold mb-2" style="color: var(--signature-color);">#3</h3>
+                <p style="color: var(--text-color);">어쩌고~~~.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-300 mt-8 py-4" style="background-color: var(--bg-color); border-color: var(--border-color);">
+        <div class="container mx-auto text-center text-sm" style="color: var(--text-color);">
+            &copy; 2024 semicolon. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
