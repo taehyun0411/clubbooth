@@ -16,10 +16,14 @@
         </div>
     </header>
 
-    <!-- Login Form -->
+    <!-- SignUp Form -->
     <main class="container mx-auto px-4 py-8 flex justify-center items-center">
         <form class="bg-white p-8 rounded shadow-lg w-full max-w-sm">
             <h2 class="text-2xl font-bold mb-6" style="color: var(--signature-color);">회원가입</h2>
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">이름</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-green-200">
+            </div>
             <div class="mb-4">
                 <label for="email" class="block text-sm font-medium text-gray-700">학번</label>
                 <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring focus:ring-green-200">
@@ -30,7 +34,7 @@
             </div>
             <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700 w-full">회원가입</button>
             <p class="text-sm text-center mt-4">
-                계정이 없으신가요? <a href="login.html" class="text-green-500 hover:underline">로그인</a>
+                계정이 있으신가요? <a href="login.html" class="text-green-500 hover:underline">로그인</a>
             </p>
         </form>
     </main>
