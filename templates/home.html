@@ -11,6 +11,10 @@
         function navigateToLogin() {
             window.location.href = 'login.html';
         }
+        // Navigate to SignUp Page
+        function navigateToSignUp() {
+            window.location.href = 'signup.html';
+        }
     </script>
 </head>
 <body class="bg-white text-gray-800">
@@ -20,7 +24,7 @@
             <h1 class="text-xl font-bold" style="color: var(--signature-color);">세미콜론 주식</h1>
             <div class="space-x-4">
                 <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToLogin()">로그인</button>
-                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">회원가입</button>
+                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToSignUp()">회원가입</button>
             </div>
         </div>
     </header>
