@@ -4,6 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            function navigateToHome() {
+                window.location.href = 'home.html';
+            }
+        </script>
     </head>
     <body class="bg-white text-gray-800">
         <!-- Navbar -->
@@ -11,7 +16,7 @@
             <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                 <h1 class="text-xl font-bold" style="color: var(--signature-color);">세미콜론 주식</h1>
                 <div class="space-x-4">
-                    <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">로그아웃</button>
+                    <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToHome()">로그아웃</button>
                     <a href="profile.html">
                     <img
                     alt="기본 이미지"
