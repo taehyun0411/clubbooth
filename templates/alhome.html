@@ -4,11 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            function navigateToHome() {
-                window.location.href = 'home.html';
-            }
-        </script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     </head>
     <body class="bg-white text-gray-800">
         <!-- Navbar -->
@@ -16,16 +13,164 @@
             <div class="container mx-auto px-4 py-4 flex justify-between items-center">
                 <h1 class="text-xl font-bold" style="color: var(--signature-color);">세미콜론 주식</h1>
                 <div class="space-x-4">
-                    <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToHome()">로그아웃</button>
+                    <a href="home.html" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">로그아웃</a>
                     <a href="profile.html">
-                    <img
-                    alt="기본 이미지"
-                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAIVBMVEXY2Njz8/Pq6urv7+/h4eHb29vo6Oje3t7j4+Pt7e3p6ekmc3lwAAADMElEQVR4nO2bC3KDMAxEMeab+x+4JZQBEkhBlq2NZt8JvGOtPkZUFSGEEEIIIYQQQgghhBBCCCEEnXbo6hjDLzHW3dBan0dEO9ThjfrrxDQHKv60NNZnu0ETz2Q8w+xbpPQfZTyl9NZnvEB7GlS7AIP3SnNFxgR4fHVXdYTQWZ/1A+14XUcII2x4tf+6fE8EVXJXB6qS+zpAldzyx8Jofep3buSrLXC563L9eAWsnrRSHSFg2eRSX3JMbX32Lb1cRwhIHaQg865E69OviJ0+g+P3pAsBupLEC8G5koSUNQOSuBJqyAJGLRnShQzWGp4kRxZKbKXrCMFaw4SCRTBMomARDJMIB5E9CGOJgtcx3J7Yn8wgdCluhGjogMi/FEIhmXBjdjdC3BRENy2Km6bRTRvvZrDyM+q6eXxw8xzk5oHOz5Opm0dsP58V3Hzo8fPpzc3HUD+fp90sDPhZ4fCzVONnzcnN4pmfVUA/y5mVm3XZys8Cs5+V8srNkv+Ek98uJpz8CDPh5NekGRc/ixFCCCHky2mb4TGO8cLkHuM4PoYGsGfph1r0Ih/rAWc2Oexz74DRE59PHre0GE8pvcoiykxnF2O96Ln3nNFGSqMs4ymlfIT9/1Qio/ADS6vojVe6gilMZUXrnFKbKfeeqiWUed5OXti4QgHTZ3THltxv9fnDaiFveOVKukfkTMRJmxr3yaakiM23ZLJ8cR2ZlBjoyKKksD8W1H1ipENdiWQ/QwflrYJidfAd1b2bQn3JMYrdiknCWlFLXSo/VqSgZRNDg8wo2STzPHgFlZnRPLAmNILLNGMtKGQus5K+J73Am5X0PckL9MYlZCW1mJin3oXEFAzikIk0l8BcSOKVAF1I2pVA1JCFlFpiffY9ch0wuXdGnoFVvnPqIf6JCaJd3CJtHQH69z3Sbh4ssuSxZX3ud2Q6oKrhjKwmwllEahI4i0hNAjJSbZGNV9anPkKiA64cTkhKIlijNSNptwCTlixtPawPfcRDIARoyl2RzLtuhACWEVkhcSPE+szHUAgaFIIGhaBBIWhQCBoUggaFoEEhaFAIGhSCBoWgQSFoUAgap8f9Ac1KQOtCVp1TAAAAAElFTkSuQmCC"
-                    class="relative inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
-                    />
+                        <img
+                        alt="기본 이미지"
+                        src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAIVBMVEXY2Njz8/Pq6urv7+/h4eHb29vo6Oje3t7j4+Pt7e3p6ekmc3lwAAADMElEQVR4nO2bC3KDMAxEMeab+x+4JZQBEkhBlq2NZt8JvGOtPkZUFSGEEEIIIYQQQgghhBBCCCEEnXbo6hjDLzHW3dBan0dEO9ThjfrrxDQHKv60NNZnu0ETz2Q8w+xbpPQfZTyl9NZnvEB7GlS7AIP3SnNFxgR4fHVXdYTQWZ/1A+14XUcII2x4tf+6fE8EVXJXB6qS+zpAldzyx8Jofep3buSrLXC563L9eAWsnrRSHSFg2eRSX3JMbX32Lb1cRwhIHaQg865E69OviJ0+g+P3pAsBupLEC8G5koSUNQOSuBJqyAJGLRnShQzWGp4kRxZKbKXrCMFaw4SCRTBMomARDJMIB5E9CGOJgtcx3J7Yn8wgdCluhGjogMi/FEIhmXBjdjdC3BRENy2Km6bRTRvvZrDyM+q6eXxw8xzk5oHOz5Opm0dsP58V3Hzo8fPpzc3HUD+fp90sDPhZ4fCzVONnzcnN4pmfVUA/y5mVm3XZys8Cs5+V8srNkv+Ek98uJpz8CDPh5NekGRc/ixFCCCHky2mb4TGO8cLkHuM4PoYGsGfph1r0Ih/rAWc2Oexz74DRE59PHre0GE8pvcoiykxnF2O96Ln3nNFGSqMs4ymlfIT9/1Qio/ADS6vojVe6gilMZUXrnFKbKfeeqiWUed5OXti4QgHTZ3THltxv9fnDaiFveOVKukfkTMRJmxr3yaakiM23ZLJ8cR2ZlBjoyKKksD8W1H1ipENdiWQ/QwflrYJidfAd1b2bQn3JMYrdiknCWlFLXSo/VqSgZRNDg8wo2STzPHgFlZnRPLAmNILLNGMtKGQus5K+J73Am5X0PckL9MYlZCW1mJin3oXEFAzikIk0l8BcSOKVAF1I2pVA1JCFlFpiffY9ch0wuXdGnoFVvnPqIf6JCaJd3CJtHQH69z3Sbh4ssuSxZX3ud2Q6oKrhjKwmwllEahI4i0hNAjJSbZGNV9anPkKiA64cTkhKIlijNSNptwCTlixtPawPfcRDIARoyl2RzLtuhACWEVkhcSPE+szHUAgaFIIGhaBBIWhQCBoUggaFoEEhaFAIGhSCBoWgQSFoUAgap8f9Ac1KQOtCVp1TAAAAAElFTkSuQmCC"
+                        class="relative inline-block h-12 w-12 cursor-pointer rounded-full object-cover object-center"
+                        />
                     </a>
                     <a href="profile.html" class="text-gray-800 hover:underline">사용자 이름</a>
                 </div>
             </div>
         </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 왼쪽: 주식 정보 -->
+                <div>
+                    <!-- 갖고 있는 주식 -->
+                    <section class="mb-8">
+                        <h2 class="text-2xl font-bold mb-4">갖고 있는 주식</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 border border-gray-300 rounded shadow">
+                                <h3 class="text-lg font-bold">삼성전자</h3>
+                                <p>보유 수량: 50주</p>
+                                <p>평균 매입가: ₩70,000</p>
+                            </div>
+                            <div class="p-4 border border-gray-300 rounded shadow">
+                                <h3 class="text-lg font-bold">LG화학</h3>
+                                <p>보유 수량: 20주</p>
+                                <p>평균 매입가: ₩600,000</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 다른 주식 살펴보기 -->
+                    <section class="mb-8">
+                        <h2 class="text-2xl font-bold mb-4">다른 주식 살펴보기</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="p-4 border border-gray-300 rounded shadow">
+                                <h3 class="text-lg font-bold">현대차</h3>
+                                <p>현재가: ₩190,000</p>
+                                <a href="#" class="text-blue-500 hover:underline">자세히 보기</a>
+                            </div>
+                            <div class="p-4 border border-gray-300 rounded shadow">
+                                <h3 class="text-lg font-bold">카카오</h3>
+                                <p>현재가: ₩50,000</p>
+                                <a href="#" class="text-blue-500 hover:underline">자세히 보기</a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 구매 내역 -->
+                    <section>
+                        <h2 class="text-2xl font-bold mb-4">구매 내역</h2>
+                        <ul class="list-disc pl-5">
+                            <li>2023-01-15: 삼성전자 10주 구매 (₩700,000)</li>
+                            <li>2023-02-20: LG화학 5주 구매 (₩3,000,000)</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- 오른쪽: 포트폴리오 및 차트 -->
+                <div>
+                    <!-- 주식 포트폴리오 요약 -->
+                    <section class="mb-8 p-6 border border-gray-300 rounded shadow">
+                        <h2 class="text-2xl font-bold mb-4">주식 포트폴리오 요약</h2>
+                        <p><strong>총 보유 자산:</strong> ₩5,000,000</p>
+                        <p><strong>총 수익:</strong> ₩500,000 (10%)</p>
+                    </section>
+
+                    <!-- 주식 차트 -->
+                    <section class="mb-8 p-6 border border-gray-300 rounded shadow">
+                        <h2 class="text-2xl font-bold mb-4">주식 차트</h2>
+                        <!-- 차트가 들어갈 자리 -->
+                        <div style="width: 400px; height: 400px">
+                            <canvas id="stockChart"></canvas>
+                        </div>
+                        
+
+                        <script>
+                            var ctx = document.getElementById('stockChart').getContext('2d');
+                            var stockChart = new Chart(ctx, {
+                                type: 'line', // 차트 종류: 꺾은선 차트
+                                data: {
+                                    labels: ['2024-01-01', '2024-01-02', '2024-01-03', '2024-01-04', '2024-01-05', '2024-01-06'], // 날짜(시간) 레이블
+                                    datasets: [{
+                                        label: '주식 가격', // 차트 레이블
+                                        data: [120, 130, 125, 120, 130, 140], // Y축 데이터 (주식 가격)
+                                        borderColor: 'rgba(75, 192, 192, 1)', // 선 색
+                                        backgroundColor: 'rgba(75, 192, 192, 0.2)', // 선 아래 색
+                                        fill: true, // 선 아래 색을 채움
+                                        tension: 0.3, // 선의 곡률 (자연스럽게 연결되도록 설정)
+                                        pointRadius: 5, // 데이터 포인트의 반지름 크기
+                                        pointBackgroundColor: 'rgba(75, 192, 192, 1)', // 포인트 색
+                                        pointHoverRadius: 7, // 마우스 호버시 포인트 크기
+                                        pointHoverBackgroundColor: 'rgba(255, 99, 132, 1)', // 포인트 호버 색
+                                    }]
+                                },
+                                options: {
+                                    responsive: true,
+                                    maintainAspectRatio: false, // 차트 크기 비율을 유지하지 않도록 설정
+                                    scales: {
+                                        x: {
+                                            title: {
+                                                display: true,
+                                                text: '날짜', // X축 제목
+                                            },
+                                            ticks: {
+                                                autoSkip: true, // X축 레이블을 자동으로 건너뛰기
+                                                maxRotation: 45, // 레이블 각도 설정
+                                                minRotation: 0,
+                                            }
+                                        },
+                                        y: {
+                                            title: {
+                                                display: true,
+                                                text: '가격 (₩)', // Y축 제목
+                                            },
+                                            ticks: {
+                                                beginAtZero: false, // 0부터 시작하지 않도록 설정
+                                                callback: function(value) { return '₩' + value; }, // 가격에 원화 기호 추가
+                                                stepSize: 10,
+                                                min: 15,
+                                                max: 10,
+                                            }
+                                        }
+                                    },
+                                    plugins: {
+                                        legend: {
+                                            position: 'top', // 범례 위치
+                                            labels: {
+                                                font: {
+                                                    size: 14, // 범례 글씨 크기
+                                                }
+                                            }
+                                        },
+                                        tooltip: {
+                                            callbacks: {
+                                                label: function(tooltipItem) {
+                                                    return tooltipItem.label + ': ₩' + tooltipItem.raw; // 툴팁에 주식 가격을 표시
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+
+                    </section>
+
+                    <!-- 현재 계좌 잔액 -->
+                    <section class="p-6 border border-gray-300 rounded shadow">
+                        <h2 class="text-2xl font-bold mb-4">현재 계좌 잔액</h2>
+                        <p><strong>계좌 잔액:</strong> ₩2,500,000</p>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </body>
 </html>
