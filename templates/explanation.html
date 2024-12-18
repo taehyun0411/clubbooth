@@ -14,6 +14,10 @@
         function navigateToSignUp() {
             window.location.href = 'accounts/signup.html';
         }
+        // Change text to "매드매쓰"
+        function changeText(element) {
+            element.textContent = '매드/매쓰';
+        }
     </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -41,7 +45,7 @@
                 <span class="font-semibold text-green-500">Stock with U</span>는 세미콜론 동아리에서 진행하는 주식 프로젝트입니다.
             </p>
             <p class="text-lg leading-relaxed">
-                학생들은 세미콜론과 협업하는 동아리 부스를 체험하며 <span class="text-green-500 font-semibold italic">sc(semicolon coin)</span>를 얻을 수 있고, 이를 사용해 동아리 주식을 매도/매수할 수 있습니다.
+                학생들은 세미콜론과 협업하는 동아리 부스를 체험하며 <span class="text-green-500 font-semibold italic">sc(semicolon coin)</span>를 얻을 수 있고, 이를 사용해 동아리 주식을 <span onclick="changeText(this)">매도/매수</span>할 수 있습니다.
             </p>
             <p class="text-lg leading-relaxed">
                 각 동아리에서 <span class="font-bold text-gray-700">NFC 태그</span>를 찾아 태깅하면 추가로 sc를 획득할 수 있습니다.
