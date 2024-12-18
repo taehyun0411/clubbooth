@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "main"
+    "main",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -78,13 +79,19 @@ WSGI_APPLICATION = "clubbooth.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL 데이터베이스 엔진
+        'NAME': 'clubbooth',  # 생성한 데이터베이스 이름
+        'USER': 'semicolon',  # 생성한 사용자 이름
+        'PASSWORD': 'semicolon',  # 사용자 비밀번호
+        'HOST': '127.0.0.1',  # 기본적으로 로컬 호스트
+        'PORT': '5433',  # PostgreSQL의 기본 포트
     }
 }
 
+AUTH_USER_MODEL = 'accounts.User'
 
+LOGIN_REDIRECT_URL = '/accounts/profile/'
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -96,6 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
+
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
