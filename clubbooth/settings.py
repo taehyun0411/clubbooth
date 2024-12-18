@@ -83,7 +83,7 @@ WSGI_APPLICATION = "clubbooth.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://localhost')
+    'default': dj_database_url.config(default='postgres://')
 }
 
 AUTH_USER_MODEL = 'accounts.User'
