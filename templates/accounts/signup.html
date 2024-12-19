@@ -39,6 +39,25 @@
                 회원가입
             </button>
         </form>
+        <script>
+       const password = document.getElementById("password");
+       const passwordConfirm = document.getElementById("password-confirm");
+
+       passwordConfirm.addEventListener("input", function() {
+           if (password.value !== passwordConfirm.value) {
+               passwordConfirm.setCustomValidity("비밀번호가 일치하지 않습니다.");
+           } else {
+               passwordConfirm.setCustomValidity("");
+           }
+       });
+   </script>
+             {% if form.errors %}
+         <div class="text-red-500 text-sm">
+             {% for field, errors in form.errors.items %}
+                 <p>{{ field }}: {{ errors|join:", " }}</p>
+             {% endfor %}
+         </div>
+     {% endif %}
     </main>
 
     <!-- Footer -->

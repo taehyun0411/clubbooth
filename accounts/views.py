@@ -50,4 +50,8 @@ def profile_view(request):
     return render(request, 'accounts/alhome.html', context)
 
 def profile(request):
-    return render(request, 'accounts/profile.html')
+    if request.user.is_authenticated:
+        username = request.user.user_id  # 현재 로그인된 사용자의 이름
+    else:
+        username = None
+    return render(request, 'accounts/profile.html', {'user_id': username})
