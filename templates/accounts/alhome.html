@@ -5,7 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script>
+            function navigateTomdms() {
+            window.location.href = 'mdms.html';
+        }
+        </script>
     </head>
+    
     <body class="bg-white text-gray-800">
         <!-- Navbar -->
         <header class="bg-gray-100 border-b border-gray-300">
@@ -169,7 +175,9 @@
 
                     </section>
 
-                    <!-- 현재 계좌 잔액 -->
+                    <!-- 매도/매수 버튼-->
+                    <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateTomdms()">매도/매수</button>
+
                 </div>
             </div>
         </main>
