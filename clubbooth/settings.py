@@ -85,11 +85,11 @@ WSGI_APPLICATION = "clubbooth.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL 백엔드 사용
-        'NAME': 'clubbooth',  # 데이터베이스 이름
-        'USER': 'semicolon',  # 사용자 이름
-        'PASSWORD': 'semicolon',  # 비밀번호
+        'NAME': 'test2',  # 데이터베이스 이름
+        'USER': 'postgres',  # 사용자 이름
+        'PASSWORD': 'postgres',  # 비밀번호
         'HOST': 'localhost',  # 데이터베이스 호스트 (로컬: localhost)
-        'PORT': '5433',  # 기본 PostgreSQL 포트
+        'PORT': '5432',  # 기본 PostgreSQL 포트
     }
 }
 
