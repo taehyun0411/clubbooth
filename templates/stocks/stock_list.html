@@ -9,10 +9,12 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <header class="bg-white border-b border-gray-300 shadow-sm">
+    <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold">Stockolon - 주식 목록</h1>
-            <a href="{% url 'alhome' %}" class="text-sm text-blue-600 hover:underline">← 내 포트폴리오로 돌아가기</a>
+            <nav>
+                <a href="{% url 'alhome' %}" class="text-sm text-blue-600 hover:underline">← 내 포트폴리오로 돌아가기</a>
+            </nav>
         </div>
     </header>
 
@@ -23,7 +25,7 @@
             {% for stock in stocks %}
                 <div class="p-4 border border-gray-300 rounded shadow bg-white">
                     <h3 class="text-lg font-bold text-gray-700">{{ stock.name }}</h3>
-                    <p>현재가: ₩{{ stock.current_price|intcomma }}</p>
+                    <p><strong>현재가:</strong> ₩{{ stock.current_price|intcomma }}</p>
                     
                     <!-- 주식 그래프 -->
                     <!-- 추가 매수 버튼 -->
@@ -37,7 +39,7 @@
     </main>
 
     <footer class="bg-white border-t border-gray-300 text-center py-4">
-        <p class="text-sm text-gray-600">© 2024 ALHome. All rights reserved.</p>
+        <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
     </footer>
 </body>
 </html>
