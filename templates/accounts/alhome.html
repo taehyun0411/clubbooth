@@ -50,7 +50,7 @@
                     <p>보유 수량: {{ stock.quantity }}</p>
                     <p>평균 단가: ₩{{ stock.average_price|intcomma }}</p>
                     <p>현재가: ₩{{ stock.stock.current_price|intcomma }}</p>
-                    <p>수익률: 
+                    <p>수익률:
                         {% if stock.profit_percent >= 0 %}
                             <span class="text-green-600">+{{ stock.profit_percent }}%</span>
                         {% else %}
@@ -61,13 +61,13 @@
                     <!-- 매도 및 매수 페이지로 이동 -->
                     <div class="grid grid-cols-1 gap-2 mt-4">
                         <!-- 매도 버튼 -->
-                        <a href="{% url 'sell_stock_page' stock.stock.id %}" 
+                        <a href="{% url 'sell_stock_page' stock.stock.id %}"
                            class="block w-full bg-red-500 text-white text-center px-4 py-2 rounded hover:bg-red-600">
                             매도하기
                         </a>
 
                         <!-- 매수 버튼 -->
-                        <a href="{% url 'buy_stock_page' stock.stock.id %}" 
+                        <a href="{% url 'buy_stock_page' stock.stock.id %}"
                            class="block w-full bg-blue-500 text-white text-center px-4 py-2 rounded hover:bg-blue-600">
                             추가 매수하기
                         </a>
@@ -84,7 +84,7 @@
         모든 주식 보기
     </a>
 </div>
-             
+
     </main>
 
     <!-- Footer -->

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
+
 from django.template.context_processors import static
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     "main",
     "accounts",
-    'django_celery_beat',
+    "counter",
 ]
 
 MIDDLEWARE = [
@@ -139,17 +140,4 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# Celery 설정
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-
-# Celery 결과 백엔드 설정 (선택 사항)
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-
-# Celery 작업에서 JSON 사용
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-
-RUN_MAIN = False
-
 
