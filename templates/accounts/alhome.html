@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Semicolon - 주식 포트폴리오</title>
+    <title>Stockolon - 내 포트폴리오</title>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
@@ -47,10 +47,10 @@
             {% for stock in stocks %}
                 <div class="p-4 border border-gray-300 rounded shadow bg-white">
                     <h3 class="text-lg font-bold">{{ stock.stock.name }}</h3>
-                    <p>보유 수량: {{ stock.quantity }}</p>
-                    <p>평균 단가: ₩{{ stock.average_price|intcomma }}</p>
-                    <p>현재가: ₩{{ stock.stock.current_price|intcomma }}</p>
-                    <p>수익률:
+                    <p><strong>보유 수량:</strong> {{ stock.quantity }}</p>
+                    <p><strong>평균 단가:</strong> ₩{{ stock.average_price|intcomma }}</p>
+                    <p><strong>현재가:</strong> ₩{{ stock.stock.current_price|intcomma }}</p>
+                    <p><strong>수익률:</strong>
                         {% if stock.profit_percent >= 0 %}
                             <span class="text-green-600">+{{ stock.profit_percent }}%</span>
                         {% else %}
