@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
-
 from django.template.context_processors import static
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,9 +40,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.humanize',
     "main",
     "accounts",
-    "stocks",
+    'django_celery_beat',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL 백엔드 사용
         'NAME': 'clubbooth',  # 데이터베이스 이름
-        'USER': 'semicolon',  # 사용자 이름
+        'USER': 'admin',  # 사용자 이름
         'PASSWORD': 'semicolon',  # 비밀번호
         'HOST': 'localhost',  # 데이터베이스 호스트 (로컬: localhost)
         'PORT': '5433',  # 기본 PostgreSQL 포트
@@ -139,4 +139,17 @@ STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Celery 설정
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+# Celery 결과 백엔드 설정 (선택 사항)
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# Celery 작업에서 JSON 사용
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+RUN_MAIN = False
+
 

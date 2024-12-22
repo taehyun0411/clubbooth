@@ -1,0 +1,25 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ stock.name }} - 매도</title>
+</head>
+<body>
+    <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white">
+            <h2 class="text-2xl font-bold mb-4">사용자 정보</h2>
+            <p><strong>계좌 잔액:</strong> ₩{{ user.money|intcomma }}</p>
+    </section>
+    <h1>{{ stock.name }} 주식 매도</h1>
+    <p>현재가: ₩{{ stock.current_price|intcomma }}</p>
+    <p>보유 수량: {{ user_stock.quantity }}</p>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="quantity">수량:</label>
+        <input type="number" name="quantity" min="1" max="{{ user_stock.quantity }}" required>
+        <button type="submit">매도하기</button>
+    </form>
+    <a href="{% url 'alhome' %}">뒤로가기</a>
+</body>
+</html>

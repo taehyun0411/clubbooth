@@ -1,12 +1,18 @@
-from django.shortcuts import render
-
-# Create your views here.
+from django.contrib import messages  # 메시지 프레임워크 추가
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Stock, UserStock
 from django.contrib.auth.decorators import login_required
+from decimal import Decimal
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+from django.contrib.auth import logout
 
 User = get_user_model()
+
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -16,9 +22,12 @@ def login_view(request):
             login(request, user)
             return redirect('alhome')  # 홈 페이지로 리디렉션
         else:
-            return render(request, 'accounts/login.html', {'error': '로그인 실패'})
+            messages.error(request, '로그인 실패: 아이디 또는 비밀번호가 잘못되었습니다.')
+            return render(request, 'accounts/login.html')
 
     return render(request, 'accounts/login.html')
+
+
 def signup_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -27,31 +36,205 @@ def signup_view(request):
 
         if password == password_confirm:
             User.objects.create_user(user_id=username, password=password)
+            messages.success(request, '회원가입이 완료되었습니다! 로그인해주세요.')
             return redirect('login')  # 로그인 페이지로 리디렉션
         else:
-            return render(request, 'accounts/signup.html', {'error': '비밀번호가 일치하지 않습니다'})
+            messages.error(request, '비밀번호가 일치하지 않습니다.')
+            return render(request, 'accounts/signup.html')
 
     return render(request, 'accounts/signup.html')
-@login_required
-def profile_view(request):
-    # 사용자 객체 가져오기
-    user = request.user
 
-    # 사용자와 관련된 데이터 예시
-    money = getattr(user, "money", 0)  # money 필드는 모델에 따라 다를 수 있음
-    stocks = getattr(user, "stocks", [])  # stocks 필드 예시
-
-    # 사용자 정보를 템플릿으로 전달
-    context = {
-        'money': money,
-        'stocks': stocks,
-        'username': user.user_id,
-    }
-    return render(request, 'accounts/alhome.html', context)
 
 def profile(request):
-    if request.user.is_authenticated:
-        username = request.user.user_id  # 현재 로그인된 사용자의 이름
-    else:
-        username = None
-    return render(request, 'accounts/profile.html', {'user_id': username})
+    return render(request, 'accounts/profile.html')
+
+
+@login_required
+def alhome(request):
+    user = request.user
+    user_stocks = UserStock.objects.filter(user=user)
+    stocks = Stock.objects.all()
+    user_stocks_dict = {user_stock.stock.id: user_stock for user_stock in user_stocks}
+
+    # 수익률 계산
+    for user_stock in user_stocks:
+        user_stock.profit_percent = round(
+            (user_stock.stock.current_price - user_stock.average_price) / user_stock.average_price * 100, 2
+        )
+
+    context = {
+        'user': user,
+        'stocks': user_stocks,
+        'all_stocks': stocks,
+        'user_stocks_dict': user_stocks_dict,
+    }
+    return render(request, "accounts/alhome.html", context)
+
+
+# 매수
+@login_required
+def buy_stock(request, stock_id):
+    stock = get_object_or_404(Stock, id=stock_id)
+    user = request.user
+
+    try:
+        quantity = int(request.POST.get('quantity', 0))
+        if quantity <= 0:
+            raise ValueError("수량은 1개 이상이어야 합니다.")
+    except ValueError:
+        messages.error(request, "올바른 수량을 입력해주세요.")
+        return redirect('alhome')
+
+    total_price = stock.current_price * quantity
+
+    if user.money < total_price:
+        messages.error(request, "잔액이 부족합니다. 계좌 잔고를 확인해주세요.")
+        return redirect('alhome')
+
+    # 매수 처리
+    user.money -= total_price
+    user.save()
+
+    # 보유 주식 업데이트
+    user_stock, created = UserStock.objects.get_or_create(user=user, stock=stock)
+    user_stock.average_price = (
+                                       (user_stock.average_price * user_stock.quantity) + total_price
+                               ) / (user_stock.quantity + quantity)
+    user_stock.quantity += quantity
+    user_stock.save()
+
+    messages.success(request, f"{stock.name} 주식을 {quantity}주 매수했습니다!")
+    return redirect('alhome')
+
+
+# 매도
+@login_required
+def sell_stock(request, stock_id):
+    stock = get_object_or_404(Stock, id=stock_id)
+    user = request.user
+
+    try:
+        quantity = int(request.POST.get('quantity', 0))
+        if quantity <= 0:
+            raise ValueError("수량은 1개 이상이어야 합니다.")
+    except ValueError:
+        messages.error(request, "올바른 수량을 입력해주세요.")
+        return redirect('alhome')
+
+    user_stock = UserStock.objects.filter(user=user, stock=stock).first()
+    if not user_stock or user_stock.quantity < quantity:
+        messages.error(request, "보유한 주식보다 많은 수량을 매도할 수 없습니다.")
+        return redirect('alhome')
+
+    # 매도 처리
+    total_sale = stock.current_price * quantity
+    user.money += total_sale
+    user.save()
+
+    user_stock.quantity -= quantity
+    user_stock.save()
+
+    if user_stock.quantity == 0:
+        user_stock.delete()  # 0개가 되면 삭제
+
+    messages.success(request, f"{stock.name} 주식을 {quantity}주 매도했습니다!")
+    return redirect('alhome')
+def buy_stock_page(request, stock_id):
+    stock = get_object_or_404(Stock, id=stock_id)
+
+    if request.method == 'POST':
+        # 폼 데이터 처리
+        quantity = int(request.POST.get('quantity', 0))
+        total_price = stock.current_price * quantity
+
+        # 사용자의 자금 확인
+        if request.user.money < total_price:
+            messages.error(request, "잔액이 부족합니다!")
+            return redirect('buy_stock_page', stock_id=stock_id)
+
+        # 잔액 차감 및 주식 구매 처리
+        request.user.money -= total_price
+        user_stock, created = UserStock.objects.get_or_create(user=request.user, stock=stock)
+        user_stock.quantity += quantity
+        user_stock.average_price = ((user_stock.average_price * (
+                    user_stock.quantity - quantity)) + total_price) / user_stock.quantity
+        user_stock.save()
+        request.user.save()
+
+        messages.success(request, f"{stock.name} 주식 {quantity}주를 구매했습니다!")
+        return redirect('alhome')  # 포트폴리오로 리디렉션
+
+    return render(request, 'buy.html', {'stock': stock})
+def sell_stock_page(request, stock_id):
+    stock = get_object_or_404(Stock, id=stock_id)
+    user_stock = get_object_or_404(UserStock, user=request.user, stock=stock)
+
+    if request.method == 'POST':
+        # 폼 데이터 처리
+        quantity = int(request.POST.get('quantity', 0))
+
+        if quantity > user_stock.quantity:
+            messages.error(request, "보유 수량보다 많이 팔 수 없습니다!")
+            return redirect('sell_stock_page', stock_id=stock_id)
+
+        # 주식 판매 처리
+        total_price = stock.current_price * quantity
+        user_stock.quantity -= quantity
+        if user_stock.quantity == 0:
+            user_stock.delete()  # 보유 수량이 0이면 삭제
+        else:
+            user_stock.save()
+
+        # 판매 대금 계좌 잔액에 추가
+        request.user.money += total_price
+        request.user.save()
+
+        messages.success(request, f"{stock.name} 주식 {quantity}주를 매도했습니다!")
+        return redirect('alhome')  # 포트폴리오로 리디렉션
+
+    return render(request, 'sell.html', {'stock': stock, 'user_stock': user_stock})
+@login_required
+def stock_list_page(request):
+    """
+    주식 목록 페이지 - 모든 주식과 추가 매수 버튼 표시
+    """
+    stocks = Stock.objects.all()  # 모든 주식 불러오기
+    stock_graphs = {}  # 각 주식의 그래프를 저장할 딕셔너리
+
+    # 각 주식에 대해 그래프 생성
+    for stock in stocks:
+        # Decimal로 변환하여 계산
+        price_changes = [
+            stock.current_price * (Decimal(1) + Decimal(i) / Decimal(100))
+            for i in range(-10, 11)
+        ]
+        plt.figure(figsize=(4, 3))
+        plt.plot(price_changes, marker='o', label=stock.name)
+        plt.title(stock.name)
+        plt.xlabel('날짜 (예시)')
+        plt.ylabel('가격 (₩)')
+        plt.legend()
+        plt.tight_layout()
+
+        # 그래프를 Base64로 인코딩하여 HTML에서 이미지로 표시
+        buffer = BytesIO()
+        plt.savefig(buffer, format='png')
+        buffer.seek(0)
+        image_png = buffer.getvalue()
+        buffer.close()
+        plt.close()  # 그래프 메모리 해제
+
+        stock_graphs[stock.id] = base64.b64encode(image_png).decode('utf-8')
+
+    context = {
+        'stocks': stocks,
+        'stock_graphs': stock_graphs,
+    }
+    return render(request, 'stocks/stock_list.html', context)
+def logout_view(request):
+    """
+    사용자의 세션을 종료하여 로그아웃 실행
+    """
+    logout(request)  # 사용자 세션 만료
+    messages.success(request, "성공적으로 로그아웃되었습니다.")  # 로그아웃 성공 메시지
+    return redirect('login')
