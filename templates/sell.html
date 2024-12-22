@@ -4,22 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>{{ stock.name }} - 매도</title>
 </head>
 <body>
-    <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white">
-            <h2 class="text-2xl font-bold mb-4">사용자 정보</h2>
-            <p><strong>계좌 잔액:</strong> ₩{{ user.money|intcomma }}</p>
-    </section>
-    <h1>{{ stock.name }} 주식 매도</h1>
-    <p>현재가: ₩{{ stock.current_price|intcomma }}</p>
-    <p>보유 수량: {{ user_stock.quantity }}</p>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="quantity">수량:</label>
-        <input type="number" name="quantity" min="1" max="{{ user_stock.quantity }}" required>
-        <button type="submit">매도하기</button>
-    </form>
-    <a href="{% url 'alhome' %}">뒤로가기</a>
+    <!-- Header/Navbar -->
+    <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">{{ stock.name }} 주식 매도</h1>                
+            <nav>
+                <a href="{% url 'logout' %}" class="text-red-500 hover:text-red-700">로그아웃</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white">
+                <h2 class="text-2xl font-bold mb-4">사용자 정보</h2>
+                <p><strong>계좌 잔액:</strong> ₩{{ user.money|intcomma }}</p>
+        </section>
+        <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white space-y-2">
+        <p><strong>현재가:</strong> ₩{{ stock.current_price|intcomma }}</p>
+        <p><strong>보유 수량:</strong> {{ user_stock.quantity }}</p>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="quantity"><strong>수량:</strong></label>
+            <input type="number" name="quantity" min="1" max="{{ user_stock.quantity }}" required>
+            <div class="flex justify-end">
+            <button type="submit" class="block bg-red-500 text-white text-center px-4 py-2 rounded hover:bg-red-600">매도하기</button>
+            </div>
+        </form>
+        </section>
+        <a href="{% url 'alhome' %}">뒤로가기</a>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-300 text-center py-4">
+        <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
+    </footer>
 </body>
 </html>
