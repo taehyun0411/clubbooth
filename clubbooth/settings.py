@@ -84,7 +84,7 @@ WSGI_APPLICATION = "clubbooth.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL 백엔드 사용
@@ -95,15 +95,18 @@ DATABASES = {
         'PORT': '5433',  # 기본 PostgreSQL 포트
     }
 }
+
 '''
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL')  # Heroku에서 DATABASE_URL 환경 변수를 가져옵니다.
     )
 }
+DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+'''
 
 # 데이터베이스 연결 시 SSL 사용
-DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
+
 
 AUTH_USER_MODEL = 'accounts.User'
 

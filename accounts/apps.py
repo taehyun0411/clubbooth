@@ -36,7 +36,7 @@ class StocksConfig(AppConfig):
                     StocksConfig.update_running = False
 
             # 주기적으로 실행 (10초 후 다시 호출)
-            threading.Timer(1000, update_stock).start()
+            threading.Timer(300, update_stock).start()
 
         # `ready`가 여러 번 호출되는 상황 방지 (초기화된 경우 실행 스킵)
         if not StocksConfig.initialized:

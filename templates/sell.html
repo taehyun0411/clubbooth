@@ -7,6 +7,42 @@
     <title>{{ stock.name }} - 매도</title>
 </head>
 <body>
+{% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <!-- 메시지 스타일 -->
+    <style>
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .message.success {
+            background-color: #d4edda;  /* 연한 초록 */
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;  /* 연한 빨강 */
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .message.info {
+            background-color: #d1ecf1;  /* 연한 파랑 */
+            color: #0c5460;
+            border-color: #bee5eb;
+        }
+        .message.warning {
+            background-color: #fff3cd;  /* 연한 노랑 */
+            color: #856404;
+            border-color: #ffeeba;
+        }
+    </style>
     <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white">
             <h2 class="text-2xl font-bold mb-4">사용자 정보</h2>
             <p><strong>계좌 잔액:</strong> ₩{{ user.money|intcomma }}</p>
