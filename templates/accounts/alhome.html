@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Semicolon - 주식 포트폴리오</title>
+    <title>Stockolon - 내 포트폴리오</title>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header/Navbar -->
-    <header class="bg-white border-b border-gray-300 shadow-sm">
+    <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold">ALHome</h1>
+            <h1 class="text-xl font-bold">Stockolon - 내 포트폴리오</h1>
             <nav>
                 <a href="{% url 'logout' %}" class="text-red-500 hover:text-red-700">로그아웃</a>
             </nav>
@@ -40,56 +40,58 @@
 
         <!-- 포트폴리오 -->
         <!-- 보유 주식 -->
-<section class="mb-8">
-    <h2 class="text-2xl font-bold mb-4">보유 주식</h2>
-    {% if stocks %}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {% for stock in stocks %}
-                <div class="p-4 border border-gray-300 rounded shadow bg-white">
-                    <h3 class="text-lg font-bold">{{ stock.stock.name }}</h3>
-                    <p>보유 수량: {{ stock.quantity }}</p>
-                    <p>평균 단가: ₩{{ stock.average_price|intcomma }}</p>
-                    <p>현재가: ₩{{ stock.stock.current_price|intcomma }}</p>
-                    <p>수익률:
-                        {% if stock.profit_percent >= 0 %}
-                            <span class="text-green-600">+{{ stock.profit_percent }}%</span>
-                        {% else %}
-                            <span class="text-red-600">{{ stock.profit_percent }}%</span>
-                        {% endif %}
-                    </p>
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold mb-4">보유 주식</h2>
+            {% if stocks %}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for stock in stocks %}
+                        <div class="p-4 border border-gray-300 rounded shadow bg-white">
+                            <h3 class="text-lg font-bold">{{ stock.stock.name }}</h3>
+                            <p><strong>보유 수량:</strong> {{ stock.quantity }}</p>
+                            <p><strong>평균 단가:</strong> ₩{{ stock.average_price|intcomma }}</p>
+                            <p><strong>현재가:</strong> ₩{{ stock.stock.current_price|intcomma }}</p>
+                            <p><strong>수익률:</strong>
+                                {% if stock.profit_percent >= 0 %}
+                                    <span class="text-green-600">+{{ stock.profit_percent }}%</span>
+                                {% else %}
+                                    <span class="text-red-600">{{ stock.profit_percent }}%</span>
+                                {% endif %}
+                            </p>
 
-                    <!-- 매도 및 매수 페이지로 이동 -->
-                    <div class="grid grid-cols-1 gap-2 mt-4">
-                        <!-- 매도 버튼 -->
-                        <a href="{% url 'sell_stock_page' stock.stock.id %}"
-                           class="block w-full bg-red-500 text-white text-center px-4 py-2 rounded hover:bg-red-600">
-                            매도하기
-                        </a>
+                            <!-- 매도 및 매수 페이지로 이동 -->
+                            <div class="grid grid-cols-1 gap-2 mt-4">
+                                <!-- 매도 버튼 -->
+                                <a href="{% url 'sell_stock_page' stock.stock.id %}"
+                                class="block w-full bg-red-500 text-white text-center px-4 py-2 rounded hover:bg-red-600">
+                                    매도하기
+                                </a>
 
-                        <!-- 매수 버튼 -->
-                        <a href="{% url 'buy_stock_page' stock.stock.id %}"
-                           class="block w-full bg-blue-500 text-white text-center px-4 py-2 rounded hover:bg-blue-600">
-                            추가 매수하기
-                        </a>
-                    </div>
+                                <!-- 매수 버튼 -->
+                                <a href="{% url 'buy_stock_page' stock.stock.id %}"
+                                class="block w-full bg-blue-500 text-white text-center px-4 py-2 rounded hover:bg-blue-600">
+                                    추가 매수하기
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            {% else %}
+                <p class="text-gray-600 italic">보유한 주식이 없습니다.</p>
+            {% endif %}
+        </section>
+        <div class="mb-8 text-right">
+            <a href="{% url 'stock_list_page' %}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+                모든 주식 보기
+            </a>
         </div>
-    {% else %}
-        <p class="text-gray-600 italic">보유한 주식이 없습니다.</p>
-    {% endif %}
-</section>
-    <div class="mb-8 text-right">
-    <a href="{% url 'stock_list_page' %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        모든 주식 보기
-    </a>
-</div>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-300 text-center py-4">
-        <p class="text-sm text-gray-600">© 2024 ALHome. All rights reserved.</p>
-    </footer>
+    <div class="flex flex-col min-h-screen">
+        <footer class="bg-gray-100 border-t border-gray-300 text-center py-4 mt-auto">
+            <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>

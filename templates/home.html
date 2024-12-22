@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>stockolon - Home</title>
+    <title>Stockolon - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white text-gray-800">
+<body class="bg-gray-50 text-gray-800">
     <!-- Navbar -->
     <header class="bg-gray-100 border-b border-gray-300">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold" style="color: var(--signature-color);">세미콜론 주식</h1>
+            <h1 class="text-xl font-bold" style="color: var(--signature-color);">Stockolon - Home</h1>
             <div class="space-x-4">
                 <a class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" href="{% url 'login' %}">로그인</a>
 <a class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" href="{% url 'signup' %}">회원가입</a>
@@ -53,10 +53,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-100 border-t border-gray-300 mt-8 py-4" style="background-color: var(--bg-color); border-color: var(--border-color);">
-        <div class="container mx-auto text-center text-sm" style="color: var(--text-color);">
-            &copy; 2024 semicolon. All rights reserved.
-        </div>
-    </footer>
+    <div class="flex flex-col min-h-screen">
+        <footer class="bg-gray-100 border-t border-gray-300 text-center py-4 mt-auto">
+            <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>
