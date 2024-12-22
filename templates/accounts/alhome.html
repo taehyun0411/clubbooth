@@ -10,9 +10,9 @@
 <body class="bg-gray-50 text-gray-800">
 
     <!-- Header/Navbar -->
-    <header class="bg-white border-b border-gray-300 shadow-sm">
+    <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold">ALHome</h1>
+            <h1 class="text-xl font-bold">Stockolon - 내 포트폴리오</h1>
             <nav>
                 <a href="{% url 'logout' %}" class="text-red-500 hover:text-red-700">로그아웃</a>
             </nav>
@@ -80,7 +80,7 @@
     {% endif %}
 </section>
     <div class="mb-8 text-right">
-    <a href="{% url 'stock_list_page' %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+    <a href="{% url 'stock_list_page' %}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
         모든 주식 보기
     </a>
 </div>
@@ -89,7 +89,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-300 text-center py-4">
-        <p class="text-sm text-gray-600">© 2024 ALHome. All rights reserved.</p>
+        <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
     </footer>
 </body>
 </html>
