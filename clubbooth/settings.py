@@ -31,8 +31,12 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['*']
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_COOKIE_SECURE = True
 
 # Application definition
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -99,8 +103,7 @@ DATABASES = {
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')  # Heroku에서 DATABASE_URL 환경 변수를 가져옵니다.
-    )
+        default=os.environ.get('postgres://u4c72p5202lfgt:p8bff816ddebad62c0f06ddc6f09e5a6b66241b976110c235bf1e2549b8937399@c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d5kg1fojlfe38s')
 }
 DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
@@ -147,6 +150,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
