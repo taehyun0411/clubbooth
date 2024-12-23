@@ -429,11 +429,10 @@ def increment_counter그레이스(request): # 첫 번째 카운터 객체 가져
     user = request.user
     if int(user.value그레이스) >= 1:
         return redirect('done_counter그레이스')
-    elif user.value그레이스 == 0:
-        user.value그레이스 += 1
-        user.money += 500000# 값 1 증가
-        user.save()  # 저장
-        return redirect('index')  # 리다이렉트
+    user.value그레이스 += 1
+    user.money += 500000# 값 1 증가
+    user.save()  # 저장
+    return redirect('index')  # 리다이렉트
 @login_required
 def increment_counter뉴턴(request):
     user, created = User.objects.get_or_create(id=1)  # 첫 번째 카운터 객체 가져오기 or 생성
