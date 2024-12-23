@@ -103,8 +103,9 @@ DATABASES = {
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('postgres://u4c72p5202lfgt:p8bff816ddebad62c0f06ddc6f09e5a6b66241b976110c235bf1e2549b8937399@c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d5kg1fojlfe38s')
+    default=os.environ.get('postgres://u4c72p5202lfgt:p8bff816ddebad62c0f06ddc6f09e5a6b66241b976110c235bf1e2549b8937399@c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d5kg1fojlfe38s'))
 }
+
 DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
 
 
