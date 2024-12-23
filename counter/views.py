@@ -371,82 +371,56 @@ def login_view하람(request):
 def show_counter그레이스 (request):
     return render(request, 'counter/그레이스getNFC.html')
 def show_counter뉴턴 (request):
-    user, created = User.objects.get_or_create()
     return render(request, 'counter/뉴턴getNFC.html')
 def show_counter늘품 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/늘품getNFC.html')
 def show_counter데이터무제한 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/데이터무제한getNFC.html')
 def show_counter데카르트 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/데카르트getNFC.html')
 def show_counter도담 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/도담getNFC.html')
 def show_counter디세뇨 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/디세뇨getNFC.html')
 def show_counter디아리오 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/디아리오getNFC.html')
 def show_counter라온제나 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/라온제나getNFC.html')
 def show_counter리사 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/리사getNFC.html')
 def show_counter매드매쓰 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/매드매쓰getNFC.html')
 def show_counter메이키스 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/메이키스getNFC.html')
 def show_counter빌리네어 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/빌리네어getNFC.html')
 def show_counter세미콜론 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/세미콜론getNFC.html')
 def show_counter소솜 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/소솜getNFC.html')
 def show_counter수학에복종 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/수학에복종getNFC.html')
 def show_counter실험의숲 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/실험의숲getNFC.html')
 def show_counter심쿵 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/심쿵getNFC.html')
 def show_counter아리솔 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/아리솔getNFC.html')
 def show_counter아페토 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/아페토getNFC.html')
 def show_counter에스쿱 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/에스쿱getNFC.html')
 def show_counter에어로테크 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/에어로테크getNFC.html')
 def show_counter엘리제 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/엘리제getNFC.html')
 def show_counter온에어 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/온에어getNFC.html')
 def show_counter폴리머 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/폴리머getNFC.html')
 def show_counter피지카스트로 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/피지카스트로getNFC.html')
 def show_counter하람 (request):
-    counter, created = Counter.objects.get_or_create(id=1)
     return render(request, 'counter/하람getNFC.html')
 @login_required
 def increment_counter그레이스(request):
