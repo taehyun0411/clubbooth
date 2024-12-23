@@ -6,16 +6,6 @@
     <title>Stockolon - Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Navigate to Login Page
-        function navigateToLogin() {
-            window.location.href = 'accounts/login.html';
-        }
-        // Navigate to SignUp Page
-        function navigateToSignUp() {
-            window.location.href = 'accounts/signup.html';
-        }
-    </script>
 </head>
 <body class="bg-gray-50 text-gray-800">
     <!-- Navbar -->
@@ -23,8 +13,8 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold" style="color: var(--signature-color);">Stockolon - Home</h1>
             <div class="space-x-4">
-                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToLogin()">로그인</button>
-                <button class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" onclick="navigateToSignUp()">회원가입</button>
+                <a class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" href="{% url 'login' %}">로그인</a>
+<a class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700" href="{% url 'signup' %}">회원가입</a>
             </div>
         </div>
     </header>

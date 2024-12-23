@@ -4,14 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
     <title>{{ stock.name }} - 매도</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
+{% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <!-- 메시지 스타일 -->
+    <style>
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .message.success {
+            background-color: #d4edda;  /* 연한 초록 */
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .message.error {
+            background-color: #f8d7da;  /* 연한 빨강 */
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .message.info {
+            background-color: #d1ecf1;  /* 연한 파랑 */
+            color: #0c5460;
+            border-color: #bee5eb;
+        }
+        .message.warning {
+            background-color: #fff3cd;  /* 연한 노랑 */
+            color: #856404;
+            border-color: #ffeeba;
+        }
+    </style>
     <!-- Header/Navbar -->
     <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold">{{ stock.name }} 주식 매도</h1>                
+            <h1 class="text-xl font-bold">{{ stock.name }} 주식 매도</h1>
             <nav>
                 <a href="{% url 'logout' %}" class="text-red-500 hover:text-red-700">로그아웃</a>
             </nav>

@@ -27,12 +27,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SECRET_KEY = "django-insecure-geipvhi7n6)0urn*)(tar*^i&9z&sjgdg&@hegdum83h@dlotr"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['*']
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_COOKIE_SECURE = True
 
 # Application definition
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -84,26 +88,30 @@ WSGI_APPLICATION = "clubbooth.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL 백엔드 사용
-        'NAME': 'test2',  # 데이터베이스 이름
-        'USER': 'postgres',  # 사용자 이름
-        'PASSWORD': 'postgres',  # 비밀번호
+        'NAME': 'clubbooth',  # 데이터베이스 이름
+        'USER': 'admin',  # 사용자 이름
+        'PASSWORD': 'semicolon',  # 비밀번호
         'HOST': 'localhost',  # 데이터베이스 호스트 (로컬: localhost)
-        'PORT': '5432',  # 기본 PostgreSQL 포트
+        'PORT': '5433',  # 기본 PostgreSQL 포트
     }
 }
-'''
+"""
+
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')  # Heroku에서 DATABASE_URL 환경 변수를 가져옵니다.
-    )
+    default=os.environ.get('postgres://u4c72p5202lfgt:p8bff816ddebad62c0f06ddc6f09e5a6b66241b976110c235bf1e2549b8937399@c8m0261h0c7idk.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/d5kg1fojlfe38s'))
 }
 
-# 데이터베이스 연결 시 SSL 사용
 DATABASES['default']['OPTIONS'] = {'sslmode': 'require'}
-'''
+
+
+# 데이터베이스 연결 시 SSL 사용
+
+
 AUTH_USER_MODEL = 'accounts.User'
 
 LOGIN_REDIRECT_URL = '/accounts/profile/'
@@ -143,6 +151,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "/static/"
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type

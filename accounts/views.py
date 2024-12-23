@@ -206,29 +206,6 @@ def stock_list_page(request):
     stock_graphs = {}  # 각 주식의 그래프를 저장할 딕셔너리
 
     # 각 주식에 대해 그래프 생성
-    for stock in stocks:
-        # Decimal로 변환하여 계산
-        price_changes = [
-            stock.current_price * (Decimal(1) + Decimal(i) / Decimal(100))
-            for i in range(-10, 11)
-        ]
-        plt.figure(figsize=(4, 3))
-        plt.plot(price_changes, marker='o', label=stock.name)
-        plt.title(stock.name)
-        plt.xlabel('날짜 (예시)')
-        plt.ylabel('가격 (₩)')
-        plt.legend()
-        plt.tight_layout()
-
-        # 그래프를 Base64로 인코딩하여 HTML에서 이미지로 표시
-        buffer = BytesIO()
-        plt.savefig(buffer, format='png')
-        buffer.seek(0)
-        image_png = buffer.getvalue()
-        buffer.close()
-        plt.close()  # 그래프 메모리 해제
-
-        stock_graphs[stock.id] = base64.b64encode(image_png).decode('utf-8')
 
     context = {
         'stocks': stocks,
