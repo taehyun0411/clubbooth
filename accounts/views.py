@@ -71,6 +71,8 @@ def alhome(request):
     return render(request, "accounts/alhome.html", context)
 
 
+
+
 # 매수
 @login_required
 def buy_stock(request, stock_id):
@@ -105,6 +107,8 @@ def buy_stock(request, stock_id):
 
     messages.success(request, f"{stock.name} 주식을 {quantity}주 매수했습니다!")
     return redirect('alhome')
+
+
 
 
 # 매도
