@@ -1,14 +1,14 @@
 from django.urls import path, include
 from counter.views import *
 urlpatterns = [
-    path("그레이스",login_view그레이스,name="login그레이스"),
-    path("show_counter/그레이스", show_counter그레이스, name="show_counter그레이스"),
-    path("increment_counter/그레이스", increment_counter그레이스, name="increment_counter그레이스"),
-    path("done_counter/그레이스", done_counter그레이스, name="done_counter그레이스"),
+    path("grace",login_view그레이스,name="login그레이스"),
+    path("show_counter/grace", show_counter그레이스, name="show_counter그레이스"),
+    path("increment_counter/grace", increment_counter그레이스, name="increment_counter그레이스"),
+    path("done_counter/grace", done_counter그레이스, name="done_counter그레이스"),
 
     path("뉴턴", show_counter뉴턴, name="show_counter뉴턴"),
     path("increment_counter/뉴턴", increment_counter뉴턴, name="increment_counter뉴턴"),
-    path("done_counter/뉴턴", done_counter뉴턴, name="done_counter뉴턴"),
+    path("done_counter/뉴턴", done_counter뉴턴, name="5done_counter뉴턴"),
 
     path("늘품", show_counter늘품, name="show_counter늘품"),
     path("increment_counter/늘품", increment_counter늘품, name="increment_counter늘품"),
