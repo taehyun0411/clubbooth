@@ -423,6 +423,8 @@ def show_counter피지카스트로 (request):
     return render(request, 'counter/피지카스트로getNFC.html')
 def show_counter하람 (request):
     return render(request, 'counter/하람getNFC.html')
+
+@login_required
 def increment_counter그레이스(request): # 첫 번째 카운터 객체 가져오기 or 생성
     user = request.user
     if int(user.value그레이스) >= 1:

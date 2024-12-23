@@ -65,6 +65,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "clubbooth.urls"
+APPEND_SLASH = True
 
 TEMPLATES = [
     {
