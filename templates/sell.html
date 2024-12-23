@@ -64,7 +64,7 @@
         <form method="POST">
             {% csrf_token %}
             <label for="quantity"><strong>수량:</strong></label>
-            <input type="number" name="quantity" min="1" max="{{ user_stock.quantity }}" required>
+            <input type="number" name="quantity" min="1" max="{{ user_stock.quantity }}" required class="border border-gray-300 rounded">
             <div class="flex justify-end">
             <button type="submit" class="block bg-red-500 text-white text-center px-4 py-2 rounded hover:bg-red-600">매도하기</button>
             </div>
