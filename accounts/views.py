@@ -4,10 +4,6 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Stock, UserStock
 from django.contrib.auth.decorators import login_required
-from decimal import Decimal
-import matplotlib.pyplot as plt
-from io import BytesIO
-import base64
 from django.contrib.auth import logout
 
 User = get_user_model()
