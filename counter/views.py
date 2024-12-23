@@ -745,57 +745,57 @@ def increment_counter하람(request):
         return redirect('alhome')  # 리다이렉트
 
 def done_counter그레이스(request):
-    return render(request,'counter/그레이스doneNFC.html')
+    return render(request, 'counter/그레이스doneNFC.html')
 def done_counter뉴턴(request):
-    return render(request,'counter/뉴턴doneNFC.html')
+    return render(request, 'counter/뉴턴doneNFC.html')
 def done_counter늘품(request):
-    return render(request,'counter/늘품doneNFC.html')
+    return render(request, 'counter/늘품doneNFC.html')
 def done_counter데이터무제한(request):
-    return render(request,'counter/데이터무제한doneNFC.html')
+    return render(request, 'counter/데이터무제한doneNFC.html')
 def done_counter데카르트(request):
-    return render(request,'counter/데카르트doneNFC.html')
+    return render(request, 'counter/데카르트doneNFC.html')
 def done_counter도담(request):
-    return render(request,'counter/도담doneNFC.html')
+    return render(request, 'counter/도담doneNFC.html')
 def done_counter디세뇨(request):
-    return render(request,'counter/디세뇨doneNFC.html')
+    return render(request, 'counter/디세뇨doneNFC.html')
 def done_counter디아리오(request):
-    return render(request,'counter/디아리오doneNFC.html')
+    return render(request, 'counter/디아리오doneNFC.html')
 def done_counter라온제나(request):
-    return render(request,'counter/라온제나doneNFC.html')
+    return render(request, 'counter/라온제나doneNFC.html')
 def done_counter리사(request):
-    return render(request,'counter/리사doneNFC.html')
+    return render(request, 'counter/리사doneNFC.html')
 def done_counter매드매쓰(request):
-    return render(request,'counter/매드매쓰doneNFC.html')
+    return render(request, 'counter/매드매쓰doneNFC.html')
 def done_counter메이키스(request):
-    return render(request,'counter/메이키스doneNFC.html')
+    return render(request, 'counter/메이키스doneNFC.html')
 def done_counter빌리네어(request):
-    return render(request,'counter/빌리네어doneNFC.html')
+    return render(request, 'counter/빌리네어doneNFC.html')
 def done_counter세미콜론(request):
-    return render(request,'counter/세미콜론doneNFC.html')
+    return render(request, 'counter/세미콜론doneNFC.html')
 def done_counter소솜(request):
-    return render(request,'counter/소솜doneNFC.html')
+    return render(request, 'counter/소솜doneNFC.html')
 def done_counter수학에복종(request):
-    return render(request,'counter/수학에복종doneNFC.html')
+    return render(request, 'counter/수학에복종doneNFC.html')
 def done_counter실험의숲(request):
-    return render(request,'counter/실험의숲doneNFC.html')
+    return render(request, 'counter/실험의숲doneNFC.html')
 def done_counter심쿵(request):
-    return render(request,'counter/심쿵doneNFC.html')
+    return render(request, 'counter/심쿵doneNFC.html')
 def done_counter아리솔(request):
-    return render(request,'counter/아리솔doneNFC.html')
+    return render(request, 'counter/아리솔doneNFC.html')
 def done_counter아페토(request):
-    return render(request,'counter/아페토doneNFC.html')
+    return render(request, 'counter/아페토doneNFC.html')
 def done_counter에스쿱(request):
-    return render(request,'counter/에스쿱doneNFC.html')
+    return render(request, 'counter/에스쿱doneNFC.html')
 def done_counter에어로테크(request):
-    return render(request,'counter/에어로테크doneNFC.html')
+    return render(request, 'counter/에어로테크doneNFC.html')
 def done_counter엘리제(request):
-    return render(request,'counter/엘리제doneNFC.html')
+    return render(request, 'counter/엘리제doneNFC.html')
 def done_counter온에어(request):
-    return render(request,'counter/온에어doneNFC.html')
+    return render(request, 'counter/온에어doneNFC.html')
 def done_counter폴리머(request):
-    return render(request,'counter/폴리머doneNFC.html')
+    return render(request, 'counter/폴리머doneNFC.html')
 def done_counter피지카스트로(request):
-    return render(request,'counter/피지카스트로doneNFC.html')
+    return render(request, 'counter/피지카스트로doneNFC.html')
 def done_counter하람(request):
-    return render(request,'counter/하람doneNFC.html')
+    return render(request, 'counter/하람doneNFC.html')
 
