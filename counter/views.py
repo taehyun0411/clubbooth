@@ -368,6 +368,8 @@ def login_view하람(request):
 
 
 
+
+@login_required
 def show_counter그레이스 (request):
     return render(request, 'counter/그레이스getNFC.html')
 def show_counter뉴턴 (request):
@@ -431,7 +433,7 @@ def increment_counter그레이스(request): # 첫 번째 카운터 객체 가져
         user.value그레이스 += 1
         user.money += 500000# 값 1 증가
         user.save()  # 저장
-        return redirect('login')  # 리다이렉트
+        return redirect('alhome')  # 리다이렉트
 @login_required
 def increment_counter뉴턴(request):
     user, created = User.objects.get_or_create(id=1)  # 첫 번째 카운터 객체 가져오기 or 생성
