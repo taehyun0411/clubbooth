@@ -12,5 +12,7 @@ urlpatterns = [
     path('stocks/sell/<int:stock_id>/', views.sell_stock_page, name='sell_stock_page'),
     path('stocks/list/', views.stock_list_page, name='stock_list_page'),
     path('logout/', views.logout_view, name='logout'),
+    path('article/', views.article, name='article'),
+path('ranking/', views.ranking_view, name='ranking'),
 
 ]

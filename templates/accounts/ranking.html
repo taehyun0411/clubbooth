@@ -1,0 +1,53 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Stockolon - 유저 랭킹</title>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header/Navbar -->
+    <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Stockolon - 유저 랭킹</h1>
+            <nav>
+                <a href="{% url 'alhome' %}" class="text-blue-500 hover:text-blue-700">포트폴리오로 돌아가기</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white">
+            <h2 class="text-2xl font-bold mb-4">랭킹</h2>
+            <p class="mb-4 text-gray-600 italic">마지막 갱신: {{ last_updated }}</p>
+            <table class="w-full border-collapse">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="text-left p-4 border">순위</th>
+                        <th class="text-left p-4 border">사용자</th>
+                        <th class="text-right p-4 border">총자본</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ranking in user_rankings %}
+                        <tr class="hover:bg-gray-100">
+                            <td class="p-4 border">{{ forloop.counter }}</td>
+                            <td class="p-4 border">{{ ranking.user.user_id }}</td>
+                            <td class="p-4 border text-right">₩{{ ranking.total_assets|intcomma }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 border-t border-gray-300 text-center py-4">
+        <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,11 +1,14 @@
+from wsgiref.util import request_uri
+
 from django.contrib import messages  # 메시지 프레임워크 추가
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Stock, UserStock
+from .models import Stock, UserStock, Article
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
-
+from django.utils.timezone import now
+from datetime import timedelta
 User = get_user_model()
 
 
@@ -57,12 +60,17 @@ def alhome(request):
         user_stock.profit_percent = round(
             (user_stock.stock.current_price - user_stock.average_price) / user_stock.average_price * 100, 2
         )
+    total_stock_value = sum(
+        user_stock.quantity * user_stock.stock.current_price for user_stock in user_stocks
+    )
+    total_assets = user.money + total_stock_value
 
     context = {
         'user': user,
         'stocks': user_stocks,
         'all_stocks': stocks,
         'user_stocks_dict': user_stocks_dict,
+        'total_assets': total_assets,
     }
     return render(request, "accounts/alhome.html", context)
 
@@ -215,3 +223,32 @@ def logout_view(request):
     logout(request)  # 사용자 세션 만료
     messages.success(request, "성공적으로 로그아웃되었습니다.")  # 로그아웃 성공 메시지
     return redirect('login')
+
+def article(request):
+    articles = Article.objects.all()
+    context = {
+        'articles': articles,
+    }
+    return render(request, 'accounts/article.html', context)
+@login_required
+def ranking_view(request):
+    users = User.objects.all()
+
+    # 모든 유저에 대해 총자본 계산
+    user_rankings = []
+    for user in users:
+        user_stocks = UserStock.objects.filter(user=user)
+        total_stock_value = sum(
+            user_stock.quantity * user_stock.stock.current_price for user_stock in user_stocks
+        )
+        total_assets = user.money + total_stock_value  # 총자본 계산
+        user_rankings.append({'user': user, 'total_assets': total_assets})
+
+    # 총자본 기준 내림차순 정렬
+    user_rankings.sort(key=lambda x: x['total_assets'], reverse=True)
+
+    context = {
+        'user_rankings': user_rankings,
+        'last_updated': now(),  # 마지막 갱신 시간 표시
+    }
+    return render(request, 'accounts/ranking.html', context)

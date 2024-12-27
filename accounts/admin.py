@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Stock, UserStock, User
+from .models import Stock, UserStock, User, Article
 
 
 # StockAdmin 정의 (change_history 숨김 처리)
@@ -11,3 +11,4 @@ class StockAdmin(admin.ModelAdmin):
 admin.site.register(Stock, StockAdmin)  # 커스텀 Admin 클래스 사용
 admin.site.register(UserStock)  # 기본 설정
 admin.site.register(User)  # 기본 설정
+admin.site.register(Article)

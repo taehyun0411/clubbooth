@@ -1,0 +1,40 @@
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Stockolon - 내 포트폴리오</title>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header/Navbar -->
+    <header class="bg-gray-100 border-b border-gray-300 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold">Stockolon - 오늘의 기사</h1>
+            <nav>
+                <a href="{% url 'alhome' %}" class="text-red-500 hover:text-red-700">홈으로</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {% for article in articles %}
+                        <div class="p-4 border border-gray-300 rounded shadow bg-white">
+                            <p>{{ article.article }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+        
+    </main>
+    
+
+    <!-- Footer -->
+    <div class="flex flex-col min-h-screen">
+        <footer class="bg-gray-100 border-t border-gray-300 text-center py-4 mt-auto">
+            <p class="text-sm text-gray-600">© 2024 semicolon. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

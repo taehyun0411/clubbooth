@@ -36,6 +36,7 @@
         <section class="mb-8 p-6 border border-gray-300 rounded shadow bg-white">
             <h2 class="text-2xl font-bold mb-4">사용자 정보</h2>
             <p><strong>계좌 잔액:</strong> ₩{{ user.money|intcomma }}</p>
+            <p><strong>총자본:</strong> ₩{{ total_assets|intcomma }}</p>
         </section>
 
         <!-- 포트폴리오 -->
@@ -78,7 +79,16 @@
             {% else %}
                 <p class="text-gray-600 italic">보유한 주식이 없습니다.</p>
             {% endif %}
-        </section>
+        <div class="mb-8 text-right">
+            <a href="{% url 'article' %}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+                오늘의 기사 보기
+            </a>
+        </div>
+        <div class="mb-8 text-right">
+            <a href="{% url 'ranking' %}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
+                랭킹 보기
+            </a>
+        </div>
         <div class="mb-8 text-right">
             <a href="{% url 'stock_list_page' %}" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">
                 모든 주식 보기

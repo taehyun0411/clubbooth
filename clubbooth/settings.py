@@ -31,7 +31,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://semicolon-clubbooth-6324dede48c8.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://semicolon-clubbooth-6324dede48c8.herokuapp.com/',
+                        'http://localhost:8000/']
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_COOKIE_SECURE = True
 
@@ -48,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     "main",
     "accounts",
-    "counter",
     'corsheaders'
 ]
 
@@ -90,8 +90,8 @@ WSGI_APPLICATION = "clubbooth.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-"""
-DATABASES = {
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # PostgreSQL 백엔드 사용
         'NAME': 'clubbooth',  # 데이터베이스 이름
@@ -162,5 +162,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ALLOWED_ORIGINS = ['https://semicolon-clubbooth-6324dede48c8.herokuapp.com/']
+CORS_ALLOWED_ORIGINS = ['https://semicolon-clubbooth-6324dede48c8.herokuapp.com']
 

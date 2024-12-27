@@ -22,33 +22,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.CharField(max_length=5, unique=True)  # 숫자 5자리
     money = models.IntegerField(default=1000000)  # 돈 속성 (정수 타입)
     stocks = JSONField(default=dict)  # 주식 정보 (JSON 형태)
-    value그레이스 = models.IntegerField(default=0)
-    value뉴턴 = models.IntegerField(default=0)
-    value늘품 = models.IntegerField(default=0)
-    value데이터무제한 = models.IntegerField(default=0)
-    value데카르트 = models.IntegerField(default=0)
-    value도담 = models.IntegerField(default=0)
-    value디세뇨 = models.IntegerField(default=0)
-    value디아리오 = models.IntegerField(default=0)
-    value라온제나 = models.IntegerField(default=0)
-    value리사 = models.IntegerField(default=0)
-    value매드매쓰 = models.IntegerField(default=0)
-    value메이키스 = models.IntegerField(default=0)
-    value빌리네어 = models.IntegerField(default=0)
-    value세미콜론 = models.IntegerField(default=0)
-    value소솜 = models.IntegerField(default=0)
-    value수학에복종 = models.IntegerField(default=0)
-    value실험의숲 = models.IntegerField(default=0)
-    value심쿵 = models.IntegerField(default=0)
-    value아리솔 = models.IntegerField(default=0)
-    value아페토 = models.IntegerField(default=0)
-    value에스쿱 = models.IntegerField(default=0)
-    value에어로테크 = models.IntegerField(default=0)
-    value엘리제 = models.IntegerField(default=0)
-    value온에어 = models.IntegerField(default=0)
-    value폴리머 = models.IntegerField(default=0)
-    value피지카스트로 = models.IntegerField(default=0)
-    value하람 = models.IntegerField(default=0)
+
 
 
 
@@ -132,3 +106,5 @@ class UserStock(models.Model):
     stock = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
     average_price = models.IntegerField(default=0)  # 평균 매입 가격 (정수 값으로 처리)
+class Article(models.Model):
+    article = models.CharField(max_length=200)
