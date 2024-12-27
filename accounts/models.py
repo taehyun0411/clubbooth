@@ -20,8 +20,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.CharField(max_length=5, unique=True)  # 숫자 5자리
-    money = models.BigIntegerField(default=1000000)  # 돈 속성 (정수 타입)
-    stocks = JSONField(default=dict)  # 주식 정보 (JSON 형태)
+    money = models.DecimalField(max_digits=40, decimal_places=0, default=1000000)  # 돈 속성 (정수 타입)  # 주식 정보 (JSON 형태)
 
 
 
