@@ -247,8 +247,11 @@ def ranking_view(request):
     # 총자본 기준 내림차순 정렬
     user_rankings.sort(key=lambda x: x['total_assets'], reverse=True)
 
+    # 상위 100위만 가져오기
+    top_rankings = user_rankings[:100]
+
     context = {
-        'user_rankings': user_rankings,
+        'user_rankings': top_rankings,
         'last_updated': now(),  # 마지막 갱신 시간 표시
     }
     return render(request, 'accounts/ranking.html', context)
